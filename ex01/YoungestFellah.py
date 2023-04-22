@@ -6,14 +6,19 @@
 #    By: archid- <archid-@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 10:29:11 by archid-           #+#    #+#              #
-#    Updated: 2023/04/20 12:34:43 by archid-          ###   ########.fr        #
+#    Updated: 2023/04/22 16:06:11 by archid-          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import pandas as pd
-
+from FileLoader import FileLoader
 
 def youngest_fellah(df: pd.DataFrame, year: int):
-    min_w = df[df.Sex == 'F'][df.Year == year]['Age'].min()
-    min_m = df[df.Sex == 'M'][df.Year == year]['Age'].min()
-    return dict(f=min_w, m=min_m)
+    df = df[(df.Year == year)][["Age", "Sex"]]
+    return dict(f=int(df[df.Sex == 'F'].Age.min()), m=int(df[df.Sex == 'M'].Age.min()))
+
+if __name__ == "__main__":
+    fl = FileLoader()
+    df = fl.load('../athlete_events.csv')
+    for olympic_year in range(1960, 2000, 4):
+        print(youngest_fellah(df, olympic_year))

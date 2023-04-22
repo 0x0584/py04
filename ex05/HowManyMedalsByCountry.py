@@ -1,20 +1,21 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    HowManyMedals.py                                   :+:      :+:    :+:    #
+#    HowManyMedalsByCountry.py                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: archid- <archid-@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/04/20 12:35:57 by archid-           #+#    #+#              #
-#    Updated: 2023/04/20 13:34:18 by archid-          ###   ########.fr        #
+#    Created: 2023/04/20 14:27:21 by archid-           #+#    #+#              #
+#    Updated: 2023/04/20 18:13:28 by archid-          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import pandas as pd
 
 
-def how_many_medals(df: pd.DataFrame, name: str):
-    df = df[(~df.Medal.isnull()) & (df.Name == name)][['Year', 'Medal', 'ID']]
+def how_many_medals_by_coutry(df: pd.DataFrame, country: str):
+    NOC = df[df.Team == country].iloc[0].NOC
+    df = df[(~df.Medal.isnull()) & (df.NOC == NOC)][['Year', 'Medal', 'ID']]
     medals = dict()
     for medal in df.groupby(['Year', 'Medal']).count().iloc:
         year, kind = medal.name
