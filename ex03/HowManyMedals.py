@@ -6,12 +6,12 @@
 #    By: archid- <archid-@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 12:35:57 by archid-           #+#    #+#              #
-#    Updated: 2023/04/22 18:39:14 by archid-          ###   ########.fr        #
+#    Updated: 2023/04/23 16:22:54 by archid-          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import pandas as pd
-from FileLoader import FileLoader
+from FileLoader import athlete_events_df
 
 def how_many_medals(df: pd.DataFrame, name: str):
     df = df[(~df.Medal.isnull()) & (df.Name == name)][['Year', 'Medal', 'ID']]
@@ -25,8 +25,7 @@ def how_many_medals(df: pd.DataFrame, name: str):
 
 
 if __name__ == '__main__':
-    fl = FileLoader()
-    df = fl.load('../athlete_events.csv')
+    df = athlete_events_df()
     sample = df.sample(n=10)
     for name in sample['Name']:
         print("{}:".format(name), how_many_medals(df, name))

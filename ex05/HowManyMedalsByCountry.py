@@ -6,14 +6,14 @@
 #    By: archid- <archid-@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 14:27:21 by archid-           #+#    #+#              #
-#    Updated: 2023/04/23 14:47:23 by archid-          ###   ########.fr        #
+#    Updated: 2023/04/23 16:23:23 by archid-          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 from pprint import pprint
 
 import pandas as pd
-from FileLoader import FileLoader
+from FileLoader import athlete_events_df
 
 def how_many_medals_by_coutry(df: pd.DataFrame, team: str):
     
@@ -33,17 +33,14 @@ def how_many_medals_by_coutry(df: pd.DataFrame, team: str):
 
 
 if __name__ == '__main__':
-    fl = FileLoader()
-    df = fl.load('../athlete_events.csv')
+    df = athlete_events_df() 
+    countries = df.NOC.unique()
+    teams = df.Team.unique()
     
-    # countries = df.NOC.unique()
-    # teams = df.Team.unique()
-    
-    # for country in countries:
-    #     #print(country)
-    #     print(how_many_medals_by_coutry(df, country))
+    for country in countries:
+        pprint(how_many_medals_by_coutry(df, country))
 
-    df = df[['NOC', 'Team']].sample(n=512).sort_values(by=['NOC', 'Team'])
+    df = df[['NOC', 'Team']].drop_duplicates().sort_values(by=['NOC', 'Team'])
 
     pairs = set()
     current = df.iloc[0].NOC

@@ -6,12 +6,12 @@
 #    By: archid- <archid-@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 09:32:16 by archid-           #+#    #+#              #
-#    Updated: 2023/04/20 12:34:48 by archid-          ###   ########.fr        #
+#    Updated: 2023/04/23 21:36:48 by archid-          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import pandas as pd
-
+import numpy as np
 
 class FileLoader:
     def load(self, path):
@@ -33,10 +33,20 @@ class FileLoader:
             else:
                 print(df.tail(-n))
 
-
+def athlete_events_df():
+    fl = FileLoader()
+    df = fl.load('../athlete_events.csv')
+    
+    df['Sexe'] = df['Sex']
+    df = df.drop('Sex', axis=1)
+    
+    print(df)
+    
+    return df
+    
 if __name__ == '__main__':
     fl = FileLoader()
-    df = fl.load('athlete_events.csv')
+    df = athlete_events_df()
     fl.display(df)
     fl.display(df, 1)
     fl.display(df, -1)
