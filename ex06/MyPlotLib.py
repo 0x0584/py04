@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    MyPlotLib.py                                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: archid- <archid-@student.42.fr>            +#+  +:+       +#+         #
+#    By: archid <archid-@student.1337.ma>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 18:08:06 by archid-           #+#    #+#              #
-#    Updated: 2023/04/24 22:54:37 by archid-          ###   ########.fr        #
+#    Updated: 2023/05/03 17:02:49 by archid           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,12 +60,12 @@ if __name__ == '__main__':
 
     def myplot(cols):
         mpl = MyPlotLib()
-        # mpl.histogram(df, cols)
-        # mpl.pair_plot(df, cols)
+        mpl.histogram(df, cols)
+        mpl.pair_plot(df, cols)
         mpl.box_plot(df, cols)
-        # for col in cols:
-        #     mpl.density(df, [col])
+        for col in cols:
+            mpl.density(df, [col])
 
     myplot(['Height', 'Weight'])
-    # myplot(['Age', 'Weight'])
-    # myplot(['Age', 'Height'])
+    myplot(['Age', 'Weight'])
+    myplot(['Age', 'Height'])

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    PropotionsBySport.py                               :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: archid- <archid-@student.42.fr>            +#+  +:+       +#+         #
+#    By: archid <archid-@student.1337.ma>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 11:12:18 by archid-           #+#    #+#              #
-#    Updated: 2023/04/23 16:22:21 by archid-          ###   ########.fr        #
+#    Updated: 2023/05/03 16:57:31 by archid           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ from FileLoader import athlete_events_df
 
 
 def proportion_by_sport(df: pd.DataFrame, year: int, sport: str, gender: str):
-    df = df[(df.Sexe == gender) & (df.Year == year)]
+    df = df[(df.Sexe == gender) & (df.Year == year)].dropna()
     return len(df[df.Sport == sport].groupby('ID')) / len(df.groupby('ID'))
 
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    SpatioTemporalData.py                              :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: archid- <archid-@student.42.fr>            +#+  +:+       +#+         #
+#    By: archid <archid-@student.1337.ma>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 13:46:34 by archid-           #+#    #+#              #
-#    Updated: 2023/04/23 16:23:06 by archid-          ###   ########.fr        #
+#    Updated: 2023/05/03 16:58:49 by archid           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ class SpatioTemporalData:
 if __name__ == '__main__':
     
     df = athlete_events_df()
-    sp = SpatioTemporalData()
+    sp = SpatioTemporalData(df)
     
     for year in range(1960, 2000, 4):
         print(sp.where(year))
